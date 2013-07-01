@@ -5,7 +5,9 @@
 		<link rel="stylesheet" href="./style.css" />
 	<head>
 	<body>
+
 		<h1>Upload Photos</h1>
+
 		<form>
 			<input type="file" multiple />
 			<div class="photos">
@@ -19,5 +21,32 @@
 			</div>
 			<button type="submit">Upload</button>
 		</form>
+
+		<script>
+
+			// Once files have been selected
+			document.querySelector('form input[type=file]').addEventListener('change', function(event){
+
+				// Read files
+				var files = event.target.files;
+
+				// Iterate through files
+				for (var i = 0; i < files.length; i++) {
+
+					// Ensure it's an image
+					if (files[i].type.match(/image.*/)) {
+
+						console.log(files[i]);
+
+					}
+
+				}
+
+				// Clear files
+				event.target.value = '';
+
+			});
+		</script>
+
 	</body>
 </html
