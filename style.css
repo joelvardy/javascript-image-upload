@@ -13,7 +13,7 @@ html, input, textarea {
 
 body {
 	margin: 7% auto;
-	width: 50%;
+	width: 600px;
 }
 	h1 {
 		background: #444;
@@ -31,9 +31,18 @@ body {
 		padding: 5%;
 	}
 		form div.photos {
-			background: orange;
-			margin-top: 5%;
+			margin: 2% -19px 0 0;
+			overflow: hidden;
 		}
+			form div.photos img {
+				border: 0;
+				border-radius: 2px;
+				display: block;
+				float: left;
+				height: 90px;
+				margin: 19px 19px 0 0;
+				width: 120px;
+			}
 		form button {
 			background: #ccc;
 			border: 0;
