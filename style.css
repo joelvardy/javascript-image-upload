@@ -43,12 +43,3 @@ body {
 				margin: 19px 19px 0 0;
 				width: 120px;
 			}
-		form button {
-			background: #ccc;
-			border: 0;
-			border-radius: 2px;
-			font-size: 1.25em;
-			margin-top: 5%;
-			padding: 2%;
-			width: 100%;
-		}
