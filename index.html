@@ -11,13 +11,15 @@
 		<form>
 			<input type="file" multiple />
 			<div class="photos">
-				<img />
-				<img />
-				<img />
-				<img />
-				<img />
-				<img />
-				<img />
+				<div class="uploaded">
+
+				</div>
+				<div class="uploading">
+					<span class="progress"><span style="width:73%;"></span></span>
+				</div>
+				<div class="uploading">
+					<span class="progress"><span style="width:29%;"></span></span>
+				</div>
 			</div>
 		</form>
 
@@ -35,19 +37,25 @@
 					// Ensure it's an image
 					if (files[i].type.match(/image.*/)) {
 
-						console.log(files[i]);
-
 						// Load image
 						var reader = new FileReader();
 						reader.onload = function (readerEvent) {
 							var image = new Image();
 							image.onload = function (imageEvent) {
 
+								// Add elemnt to page
+								var imageElement = document.createElement('div');
+								imageElement.classList.add('uploading');
+								imageElement.innerHTML = '<span class="progress"><span></span></span>';
+								var progressElement = imageElement.querySelector('span.progress span');
+								progressElement.style.width = 0;
+								document.querySelector('form div.photos').appendChild(imageElement);
+
 								// Resize image
-								var canvas = document.createElement('canvas');
-								var max_size = 800;
-								var width = image.width;
-								var height = image.height;
+								var canvas = document.createElement('canvas'),
+									max_size = 800,
+									width = image.width,
+									height = image.height;
 								if (width > height) {
 									if (width > max_size) {
 										height *= max_size / width;
