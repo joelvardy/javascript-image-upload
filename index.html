@@ -11,15 +11,7 @@
 		<form>
 			<input type="file" multiple />
 			<div class="photos">
-				<div class="uploaded">
 
-				</div>
-				<div class="uploading">
-					<span class="progress"><span style="width:73%;"></span></span>
-				</div>
-				<div class="uploading">
-					<span class="progress"><span style="width:29%;"></span></span>
-				</div>
 			</div>
 		</form>
 
@@ -53,7 +45,7 @@
 
 								// Resize image
 								var canvas = document.createElement('canvas'),
-									max_size = 800,
+									max_size = 1200,
 									width = image.width,
 									height = image.height;
 								if (width > height) {
@@ -71,7 +63,34 @@
 								canvas.height = height;
 								canvas.getContext('2d').drawImage(image, 0, 0, width, height);
 
-								console.log(canvas.toDataURL('image/png'));
+								// Upload image
+								var xhr = new XMLHttpRequest();
+								if (xhr.upload) {
+
+									// Update progress
+									xhr.upload.addEventListener('progress', function(event) {
+										var percent = parseInt(event.loaded / event.total * 100);
+										progressElement.style.width = percent+'%';
+									}, false);
+
+									// File uploaded / failed
+									xhr.onreadystatechange = function(event) {
+										if (xhr.readyState == 4) {
+											if (xhr.status == 200) {
+												imageElement.classList.remove('uploading');
+												imageElement.classList.add('uploaded');
+												imageElement.style.backgroundImage = 'url('+xhr.responseText+')';
+											} else {
+												imageElement.parentNode.removeChild(imageElement);
+											}
+										}
+									}
+
+									// Start upload
+									xhr.open('post', 'process.php', true);
+									xhr.send(canvas.toDataURL('image/jpeg'));
+
+								}
 
 							}
 
