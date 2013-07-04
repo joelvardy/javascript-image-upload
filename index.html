@@ -77,9 +77,13 @@
 									xhr.onreadystatechange = function(event) {
 										if (xhr.readyState == 4) {
 											if (xhr.status == 200) {
+
 												imageElement.classList.remove('uploading');
 												imageElement.classList.add('uploaded');
 												imageElement.style.backgroundImage = 'url('+xhr.responseText+')';
+
+												console.log('Image uploaded: '+xhr.responseText);
+
 											} else {
 												imageElement.parentNode.removeChild(imageElement);
 											}

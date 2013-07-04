@@ -31,7 +31,7 @@ body {
 		padding: 5%;
 	}
 		form div.photos {
-			margin: 2% -19px 0 0;
+			margin-right: -19px;
 			overflow: hidden;
 		}
 			form div.photos > div {

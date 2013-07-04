@@ -10,7 +10,7 @@ $data = file_get_contents('php://input');
 $image = file_get_contents('data://'.substr($data, 5));
 
 // Save to disk
-if ( ! file_put_contents('uploads/'.$filename, $image)) {
+if ( ! file_put_contents('images/'.$filename, $image)) {
 	header('HTTP/1.1 503 Service Unavailable');
 	exit();
 }
@@ -20,4 +20,4 @@ unset($data);
 unset($image);
 
 // Return file URL
-echo './uploads/'.$filename;
+echo './images/'.$filename;
