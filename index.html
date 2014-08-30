@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Upload Photos</title>
+		<title>Resize &amp; Upload</title>
 		<link rel="stylesheet" href="./style.css" />
-	<head>
+	</head>
 	<body>
 
-		<h1>Upload Photos</h1>
-
 		<form>
-			<input type="file" multiple />
-			<div class="photos">
-
-			</div>
+			<input type="file" accept="image/jpeg, image/png" multiple />
 		</form>
 
-		<script src="./upload.js"></script>
+		<table class="images">
+			<thead>
+				<th>Time</th>
+				<th>Initial Size</th>
+				<th>Resized Size</th>
+				<th>Resized Image</th>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 
+		<script src="./vendor/canvas-to-blob.min.js"></script>
+		<script src="./resize.js"></script>
+		<script src="./app.js"></script>
 	</body>
-</html
+</html>
