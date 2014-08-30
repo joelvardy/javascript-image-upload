@@ -38,17 +38,18 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 				var initialSize = files[i].size;
 
-				resize.photo(files[i], 2000, 'file', function (resizedFile) {
+				resize.photo(files[i], 1200, 'file', function (resizedFile) {
 
 					var resizedSize = resizedFile.size;
 
 					upload(resizedFile, function (response) {
 						var rowElement = document.createElement('tr');
-						rowElement.innerHTML = '<td>'+new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds()+'</td><td>'+fileSize(initialSize)+'</td><td>'+fileSize(resizedSize)+'</td><td><a href="'+response.url+'">view image</a></td>';
+						rowElement.innerHTML = '<td>'+new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds()+'</td><td>'+fileSize(initialSize)+'</td><td>'+fileSize(resizedSize)+'</td><td>'+Math.round((initialSize - resizedSize) / initialSize * 100)+'%</td><td><a href="'+response.url+'">view image</a></td>';
 						document.querySelector('table.images tbody').appendChild(rowElement);
 					});
 
-					resize.photo(resizedFile, 500, 'dataURL', function (thumbnail) {
+					// This is not used in the demo, but an example which returns a data URL so yan can show the user a thumbnail before uploading th image.
+					resize.photo(resizedFile, 600, 'dataURL', function (thumbnail) {
 						console.log('Display the thumbnail to the user: ', thumbnail);
 					});
 
